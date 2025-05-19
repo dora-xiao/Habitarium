@@ -346,7 +346,14 @@ class Tool extends Item {
 
 
 class Egg extends Item {
-
+    constructor(breed, role) {
+        function capitalize(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+        super(`${capitalize(breed)} ${capitalize(role)} Egg`, "Bringing life into Habitariums since Y12.", {})
+        this.breed = breed;
+        this.role = role;
+    }
 }
 
 
@@ -708,4 +715,7 @@ temp = new Building("lookout_tower")
 console.log(temp.toString())
 
 temp = new Building("storage")
+console.log(temp.toString())
+
+temp = new Egg("larnikin", "soldier")
 console.log(temp.toString())
