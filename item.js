@@ -52,22 +52,181 @@ class Item {
 
 
 class Ink extends Item {
+    constructor(name, description, price, uses) {
+        super(name, description, price);
+        this.uses = uses;
+    }
 
+    toString() {
+        return super.toString() + ` | Uses: ${this.uses}`;
+    }
 }
 
 
-class Bottle extends Ink {
+class Bottle extends Ink { // Building
+    static options = {
+        "blue": {
+            name: "Blue Ink Bottle",
+            description: "This bottle of ink will alter structures to have a blue appearance.",
+            price: {water: 450, grass: 300, pollen: 650},
+            uses: 5
+        },
+        "red": {
+            name: "Red Ink Bottle",
+            description: "This bottle of ink will alter structures to have a red appearance.",
+            price: {water: 450, grass: 300, pollen: 650},
+            uses: 5
+        },
+        "yellow": {
+            name: "Yellow Ink Bottle",
+            description: "This bottle of ink will alter structures to have a yellow appearance.",
+            price: {water: 450, grass: 300, pollen: 650},
+            uses: 5
+        },
+        "faerie": {
+            name: "Faerie Ink Bottle",
+            description: "There is something enchanting about this Ink Bottle (This will give your structures a Faerie-like appearance in your Habitarium; 10 drops) Note: this item is not giftable.",
+            price: {neocash: 200},
+            uses: 10
+        },
+        "pirate": {
+            name: "Pirate Ink Bottle",
+            description: "Be careful where ye go. (This bottle of ink will give your structures a piratey appearance in your Habitarium; 10 drops) Note: this item is not giftable.",
+            price: {neocash: 200},
+            uses: 10
+        },
+        "snow": {
+            name: "Snow Ink Bottle",
+            description: "*shiver* Sweaters may be needed. (This bottle of ink will give your structures a snowy appearance in your Habitarium; 10 drops) Note: This item is not giftable.",
+            price: {neocash: 200},
+            uses: 10
+        },
+        "larnikin": {
+            name: "Larnikin Ink Bottle",
+            description: "Now that is a lot of legs. (This will give your structures a Larnikin-like appearance in your Habitarium; 10 drops) Note: this item is not giftable.",
+            price: {neocash: 200},
+            uses: 10
+        },
+        "mootix": {
+            name: "Mootix Ink Bottle",
+            description: "This could be good camouflage for your Mootix. (This will give your structures a Mootix-like appearance in your Habitarium; 10 drops) Note: this item is not giftable.",
+            price: {neocash: 200},
+            uses: 10
+        },
+        "pinchit": {
+            name: "Pinchit Ink Bottle",
+            description: "This bottle shouldnt pinch. (This will give your structures a Pinchit-like appearance in your Habitarium; 10 drops) Note: this item is not giftable.",
+            price: {neocash: 200},
+            uses: 10
+        },
+        "chocolate": {
+            name: "Chocolate Ink Bottle",
+            description: "Even better with sprinkles and whipped creme. (This bottle of ink will give your structures a chocolate appearance in your Habitarium; 10 drops) Note: this item is not giftable.",
+            price: {neocash: 200},
+            uses: 10
+        },
+    }
 
+    constructor(name) {
+        let selected = Bottle.options[name];
+        super(selected.name, selected.description, selected.price, selected.uses);
+    }
+
+    toString() {
+        return super.toString();
+    }
 }
 
 
-class Dropper extends Ink {
+class Dropper extends Ink { // Pet
+    static options = {
+        "larnikin_faerie": {
+            name: "Larnikin Faerie Ink Dropper",
+            description: "This extraordinary Habitarium item will cause your Larnikin to take on a faerie appearance! (10 drops) Note: this item is not giftable.",
+            price: {neocash: 100},
+            uses: 10
+        },
+        "mootix_faerie": {
+            name: "Mootix Faerie Ink Dropper",
+            description: "This extraordinary Habitarium item will cause your Mootix to take on a faerie appearance! (10 drops) Note: this item is not giftable.",
+            price: {neocash: 100},
+            uses: 10
+        },
+        "pinchit_faerie": {
+            name: "Pinchit Faerie Ink Dropper",
+            description: "This extraordinary Habitarium item will cause your Pinchit to take on a faerie appearance! (10 drops) Note: this item is not giftable.",
+            price: {neocash: 100},
+            uses: 10
+        },
+        "larnikin_pirate": {
+            name: "Larnikin Pirate Ink Dropper",
+            description: "Arrr... ye be getting into pirate territory. (Use this to change your Larnikin to take on a pirate appearance in your Habitarium; 10 drops) Note: this item is not giftable.",
+            price: {neocash: 100},
+            uses: 10
+        },
+        "mootix_pirate": {
+            name: "Mootix Pirate Ink Dropper",
+            description: "Arrr... ye be getting into pirate territory. (Use this to change your Mootix to take on a pirate appearance in your Habitarium; 10 drops) Note: this item is not giftable.",
+            price: {neocash: 100},
+            uses: 10
+        },
+        "pinchit_pirate": {
+            name: "Pinchit Pirate Ink Dropper",
+            description: "Arrr... ye be getting into pirate territory. (Use this to change your Pinchit to take on a pirate appearance in your Habitarium; 10 drops) Note: this item is not giftable.",
+            price: {neocash: 100},
+            uses: 10
+        },
+        "larnikin_snow": {
+            name: "Larnikin Snow Ink Dropper",
+            description: "Brrr... This looks like it could be a bit frosty.. (Use this to change your Larnikin to take on a snowy appearance in your Habitarium) (10 uses). Note: This item is not giftable.",
+            price: {neocash: 100},
+            uses: 10
+        },
+        "mootix_snow": {
+            name: "Mootix Snow Ink Dropper",
+            description: "Brrr... This looks like it could be a bit frosty.. (Use this to change your Mootix to take on a snowy appearance in your Habitarium) (10 uses). Note: This item is not giftable.",
+            price: {neocash: 100},
+            uses: 10
+        },
+        "pinchit_snow": {
+            name: "Pinchit Snow Ink Dropper",
+            description: "Brrr... This looks like it could be a bit frosty.. (Use this to change your Pinchit to take on a snowy appearance in your Habitarium) (10 uses). Note: This item is not giftable.",
+            price: {neocash: 100},
+            uses: 10
+        },
+        "larnikin_chocolate": {
+            name: "Larnikin Chocolate Ink Dropper",
+            description: "Yikes, please dont eat me! (Use this to change your Larnikin to take on a chocolate appearance in your Habitarium; 10 drops) Note: this item is not giftable.",
+            price: {neocash: 100},
+            uses: 10
+        },
+        "mootix_chocolate": {
+            name: "Mootix Chocolate Ink Dropper",
+            description: "Yikes, please dont eat me! (Use this to change your Mootix to take on a chocolate appearance in your Habitarium; 10 drops) Note: this item is not giftable.",
+            price: {neocash: 100},
+            uses: 10
+        },
+        "pinchit_chocolate": {
+            name: "Pinchit Chocolate Ink Dropper",
+            description: "Yikes, please dont eat me! (Use this to change your Pinchit to take on a chocolate appearance in your Habitarium; 10 drops) Note: this item is not giftable.",
+            price: {neocash: 100},
+            uses: 10
+        }
+    }
 
+    constructor(name) {
+        let selected = Dropper.options[name];
+        super(selected.name, selected.description, selected.price, selected.uses);
+    }
+
+    toString() {
+        return super.toString();
+    }
 }
 
 
 class Food extends Item {
-    static foods = {
+    static options = {
         "cornmeal": {
             name: "Cornmeal",
             price: {grass: 160, pollen: 40, water: 40},
@@ -131,7 +290,8 @@ class Food extends Item {
     }
 
     constructor(name) {
-        super(Food.foods[name].name, Food.foods[name].description, Food.foods[name].price);
+        let selected = Food.options[name];
+        super(selected.name, selected.description, selected.price);
     }
 
     toString() {
@@ -141,7 +301,7 @@ class Food extends Item {
 
 // TODO: what is magical meatball 
 class Tool extends Item {
-    static tools = {
+    static options = {
         "pluburb_magical_seeds": {
             name: "Pluburb Magical Seeds",
             price: {neocash: 125},
@@ -175,7 +335,8 @@ class Tool extends Item {
     }
 
     constructor(name) {
-        super(Tool.tools[name].name, Tool.tools[name].description, Tool.tools[name].price);
+        let selected = Tool.options[name];
+        super(selected.name, selected.description, selected.price);
     }
 
     toString() {
@@ -203,4 +364,10 @@ var temp = new Food("speck_of_cheese")
 console.log(temp.toString())
 
 temp = new Tool("seed_hammer")
+console.log(temp.toString())
+
+temp = new Bottle("mootix")
+console.log(temp.toString())
+
+temp = new Dropper("mootix_faerie")
 console.log(temp.toString())
