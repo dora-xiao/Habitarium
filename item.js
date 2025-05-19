@@ -567,7 +567,122 @@ class Background extends Item {
 
 
 class Building extends Item {
+    static conditions = ["Perfect", "A bit shabby", "Tattered", "Broken"]
+    static options = {
+        "nest": {
+            name: "Nest",
+            price: [
+                {wood: 800, mud: 950, stone: 650},
+                {wood: 800, mud: 850, stone: 1050},
+                {wood: 900, mud: 950, stone: 1300},
+                {wood: 900, mud: 950, stone: 1300},
+            ],
+            description: "This cozy structure is a wonderful place where Petpetpet eggs can be nurtured.",
+            effect: {
+                unlock: [2, 17, 40, 63],
+                speed: [120, 80, 50, 30]
+            }
+        },
+        "house": {
+            name: "House",
+            price: [
+                {wood: 1200, mud: 1200, stone: 950},
+                {wood: 950, mud: 600, stone: 1300},
+                {wood: 1150, mud: 850, stone: 2200},
+                {wood: 1150, mud: 850, stone: 2200}
+            ],
+            description: "The perfect place to be for Petpetpets that need a rest.",
+            unlock: [2, 13, 36, 59],
+            effect: {
+                capacity: [3, 5, 7, 9],
+                speed: [1, 2, 2, 2]
+            }
+        },
+        "storage": {
+            name: "Storage",
+            price: [
+                {wood: 1850, mud: 1550, stone: 1450},
+                {wood: 3400, mud: 1250, stone: 1800},
+                {wood: 3800, mud: 1300, stone: 1850},
+                {wood: 3800, mud: 1300, stone: 1850}
+            ],
+            description: "Resources gathered by Petpetpets are stored in this structure.",
+            unlock: [1, 21, 44, 67],
+            effect: {
+                capacity: [2500, 3500, 4500, 5500]
+            }
+        },
+        "hospital": {
+            name: "Hospital",
+            price: [
+                {wood: 2450, mud: 1800, stone: 6750},
+                {wood: 3900, mud: 2100, stone: 4800},
+                {wood: 4400, mud: 2100, stone: 5250},
+                {wood: 4400, mud: 2100, stone: 5250}
+            ],
+            description: "Staying in this restful place allows Petpetpets to regain lost health.",
+            unlock: [15, 25, 48, 71],
+            effect: {
+                capacity: [2, 3, 4, 5],
+                speed: [2, 2, 2, 2]
+            }
+        },
+        "barracks": {
+            name: "Barracks",
+            price: [
+                {wood: 2550, mud: 4250, stone: 6800},
+                {wood: 2800, mud: 4150, stone: 6200},
+                {wood: 2800, mud: 4150, stone: 6200}
+            ],
+            description: "This defensive building houses soldier Petpetpets.",
+            unlock: [25, 29, 52],
+            effect: {
+                capacity: [3, 5, 7],
+                speed: [1, 2, 2]
+            }
+        },
+        "lookout_tower": {
+            name: "Lookout Tower",
+            price: [{neocash: 150}],
+            description: "Setting up a sentry in this tower will alert you of incoming raids. (This makes Neofriends raid 10-50% less effective in your Habitarium) Note: This item is not giftable.",
+            unlock: [1],
+            effect: {
+                alert_raid: [true]
+            }
+        },
+    }
 
+    constructor(name, grade=0) {
+        let selected = Building.options[name];
+        super(selected.name, selected.description, selected.price[grade]);
+        this.id = name;
+        this.unlock = selected.unlock[grade];
+        this.effect = {}
+        for (const key in selected.effect) {
+            this.effect[key] = selected.effect[key][grade];
+        }
+        this.condition = Building.conditions[0];
+        this.grade = grade;
+    }
+
+    nextUnlock() {
+        if(this.grade >= Building.options[this.id].unlock.length) return {}
+        let next_effect = {}
+        for (const key in Building.options[this.id].effect) {
+            next_effect[key] = Building.options[this.id].effect[key][this.grade];
+        }
+        return {
+            level: Building.options[this.id].unlock[this.grade + 1],
+            price: Building.options[this.id].price[this.grade + 1],
+            effect: next_effect
+        }
+    }
+
+    toString() {
+        return super.toString() + ` | Unlock: ${this.unlock} | Condition: ${this.condition} | Effect: ${JSON.stringify(this.effect)} | Next Upgrade: ${JSON.stringify(this.nextUnlock())}`
+    }
+
+    
 }
 
 
@@ -587,4 +702,10 @@ temp = new Decoration("large_mossy_twig")
 console.log(temp.toString())
 
 temp = new Background("snow_wonderland")
+console.log(temp.toString())
+
+temp = new Building("lookout_tower")
+console.log(temp.toString())
+
+temp = new Building("storage")
 console.log(temp.toString())
