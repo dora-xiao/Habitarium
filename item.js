@@ -25,7 +25,7 @@ class Price {
         this.price.wood = wood;
         this.price.neocash = neocash;
         Object.values(ResourceEnum).forEach((resource) => {
-            console.assert(this.price[resource] >= 0 && this.price[resource] <= 2500, `${resource} price ${this.price[resource]} is invalid`);
+            console.assert(this.price[resource] >= 0 && this.price[resource] <= 5000, `${resource} price ${this.price[resource]} is invalid`);
             if(this.price[resource] > 0) this.nonzero.push(resource);
         });
         console.assert(this.price.neocash >= 0 && this.price.neocash <= 250, `neocash price ${this.price.neocash} is invalid`);
@@ -299,7 +299,7 @@ class Food extends Item {
     }
 }
 
-// TODO: what is magical meatball 
+
 class Tool extends Item {
     static options = {
         "pluburb_magical_seeds": {
@@ -351,7 +351,218 @@ class Egg extends Item {
 
 
 class Decoration extends Item {
+    static options = {
+        "grarrl_tooth": {
+            name: "Grarrl Tooth",
+            price: {stone: 350, mud: 50},
+            description: "This giant tooth is too heavy to use as a weapon.",
+        },
+        "twig_fence": {
+            name: "Twig Fence",
+            price: {stone: 100, wood: 35, mud: 40},
+            description: "This rustic fence will look great around buildings.",
+        },
+        "pine_cone_shard_fence": {
+            name: "Pine Cone Shard Fence",
+            price: {stone: 50, wood: 350, mud: 150},
+            description: "These sharp pine cone shards will keep out unwanted guests.",
+        },
+        "mossy_twig": {
+            name: "Mossy Twig",
+            price: {wood: 450, mud: 150},
+            description: "This twig is topped with super soft moss.",
+        },
+        "dandelion_fluff_seed": {
+            name: "Dandelion Fluff Seed",
+            price: {stone: 100, wood: 400, mud: 200},
+            description: "Anchor down this seed so it doesnt blow in the wind!",
+        },
+        "glowing_ember": {
+            name: "Glowing Ember",
+            price: {stone: 700, wood: 100, mud: 50},
+            description: "Embers provide the perfect ambient lighting without being too bright.",
+        },
+        "seedpod": {
+            name: "Seedpod",
+            price: {stone: 50, wood: 300, mud: 350},
+            description: "The seedpod makes a natural and intriguing decoration.",
+        },
+        "pearl": {
+            name: "Pearl",
+            price: {stone: 350, wood: 50, mud: 700},
+            description: "This shining pearl is great as a centrepiece for your habitarium.",
+        },
+        "single_die": {
+            name: "Single Die",
+            price: {stone: 900, wood: 350, mud: 200},
+            description: "Too heavy for your Petpetpets to roll but it makes for a nifty piece for your habitarium!",
+        },
+        "large_mossy_twig": {
+            name: "Large Mossy Twig",
+            price: {stone: 150, wood: 1250, mud: 400},
+            description: "This large twig as a decoration is sure to make quite a statement.",
+        },
+        "piece_of_a_scratch_card": {
+            name: "Piece of a Scratch Card",
+            price: {stone: 450, wood: 900, mud: 450},
+            description: "Feeling lucky? You wont win anything with just a piece, though.",
+        },
+        "seashell": {
+            name: "Seashell",
+            price: {stone: 1300, wood: 200, mud: 800},
+            description: "This beautiful Sea shell is the perfect decorative item.",
+        },
+        "ancient_monument": {
+            name: "Ancient Monument",
+            price: {stone: 1900, wood: 300, mud: 350},
+            description: "Add a touch of history to your Habitarium with this monument.",
+        },
+        "lovely_gazebo": {
+            name: "Lovely Gazebo",
+            price: {stone: 400, wood: 2100, mud: 200},
+            description: "This gazebo adds a little shade and charm to any Habitarium.",
+        },
+        "treasure_chest": {
+            name: "Treasure Chest",
+            price: {stone: 1600, wood: 1050, mud: 250},
+            description: "If P3s could be rich, they definitely would be with this much treasure.",
+        },
+        "crashed_spaceship": {
+            name: "Crashed Spaceship",
+            price: {stone: 2700, wood: 1500, mud: 900},
+            description: "What? Spaceships can be this small. You dont think all aliens are Neopet-sized, do you?",
+        },
+        "lucky_four-leaf_clover_patch": {
+            name: "Lucky Four-leaf Clover Patch",
+            price: {stone: 100, wood: 600, mud: 800},
+            description: "Any clover patch you can find a four-leaf clover in is considered incredibly lucky!",
+        },
+        "happy_little_mootix_gnome": {
+            name: "Happy Little Mootix Gnome",
+            price: {stone: 50, wood: 1250, mud: 500},
+            description: "This little Mootix looks all too happy to be in your Habitarium!",
+        },
+        "rusty_ship_anchor": {
+            name: "Rusty Ship Anchor",
+            price: {stone: 1300, wood: 250, mud: 600},
+            description: "One can only imagine what manner of ship this anchor once belonged to...",
+        },
+        "pirate_ship_wheel": {
+            name: "Pirate Ship Wheel",
+            price: {stone: 600, wood: 1900, mud: 950},
+            description: "What happened to the rest of the ship?",
+        },
+        "palm_tree": {
+            name: "Palm Tree",
+            price: {stone: 100, wood: 1750, mud: 300},
+            description: "This miniature palm tree will provide your habitarium with some much-needed shade.",
+        },
+        "tiki_hut": {
+            name: "Tiki Hut",
+            price: {stone: 200, wood: 2500, mud: 500},
+            description: "This relaxing hut may be a bit too tempting for your hard-working P3s.",
+        },
+        "pot_of_neopoints": {
+            name: "Pot of Neopoints",
+            price: {stone: 3200, wood: 800, mud: 1350},
+            description: "A pot full of Neopoints and you didnt even have to get to the end of the rainbow to find it.",
+        },
+        "pirate_flag": {
+            name: "Pirate Flag",
+            price: {neocash: 100},
+            description: "This flag will bring fear into the hearts of your foes! (to be used in your Habitarium). Note: this item is not giftable.",
+        },
+        "crystal_fountain_ball": {
+            name: "Crystal Fountain Ball",
+            price: {neocash: 125},
+            description: "Thankfully, the water in this lovely fountain never runs out (to be used in your Habitarium). Note: this item is not giftable.",
+        },
+        "reed_cannon": {
+            name: "Reed Cannon",
+            price: {neocash: 125},
+            description: "This cannon can be used to scare enemies but cannot be used as a weapon (to be used in your Habitarium). Note: this item is not giftable.",
+        },
+        "rainbow_spring": {
+            name: "Rainbow Spring",
+            price: {neocash: 150},
+            description: "A relaxing little place for your Petpetpet to hang out in (to be used in your Habitarium). Note: this item is not giftable.",
+        },
+        "frozen_ice_crystals": {
+            name: "Frozen Ice Crystals",
+            price: {neocash: 100},
+            description: "A natural spring froze to form these sparkling crystals. *gleam* (to be used in your Habitarium) Note: This item is not giftable.",
+        },
+        "snow_petpet": {
+            name: "Snow Petpet",
+            price: {neocash: 100},
+            description: "Lets hope he doesnt melt come Spring! (to be used in your Habitarium) Note: This item is not giftable.",
+        },
+        "chocolate_fountain": {
+            name: "Chocolate Fountain",
+            price: {neocash: 125},
+            description: "The chocolate just keeps flowing! (to be used in your Habitarium) Note: this item is not giftable.",
+        },
+        "chocolate_bridge": {
+            name: "Chocolate Bridge",
+            price: {neocash: 150},
+            description: "Sculpted from chocolate and decorated with candies and frosting (to be used in your Habitarium). Note: this item is not giftable.",
+        },
+        "pot_of_flowers": {
+            name: "Pot of Flowers",
+            price: {neocash: 100},
+            description: "Not only are they nice to look at, these flowers are quite fragrant and will fill your Habitarium with their fresh scent. Note: this item is not giftable.",
+        },
+        "sweet_candy_topiary": {
+            name: "Sweet Candy Topiary",
+            price: {neocash: 100},
+            description: "A dazzling topiary that will brighten up any area you wish in your Habitarium. Note: this item is not giftable.",
+        },
+        "stone_larnikin_waterfall": {
+            name: "Stone Larnikin Waterfall",
+            price: {neocash: 125},
+            description: "This peaceful fountain should make a welcoming addition to your Habitarium. Note: this item is not giftable.",
+        }
+        // TODO: check non-documented items: tar pit
+    }
 
+    constructor(name) {
+        let selected = Decoration.options[name];
+        super(selected.name, selected.description, selected.price);
+    }
+
+    toString() {
+        return super.toString()
+    }
+}
+
+
+class Background extends Item {
+    static options = {
+        "faerie_cloud": {
+            name: "Faerie Cloud Background",
+            price: {neocash: 250},
+            description: "Its like floating on air… Wait. It IS floating on air! (to be used in your Habitarium). Note: this item is not giftable.",
+        },
+        "waterfront": {
+            name: "Waterfront Background",
+            price: {neocash: 250},
+            description: "Arrr... there be treasure on this Island (to be used in your Habitarium). Note: this item is not giftable.",
+        },
+        "snow_wonderland": {
+            name: "Snow Wonderland Background",
+            price: {neocash: 250},
+            description: "Brrr... dont forget your coat! (to be used in your Habitarium) Note: This item is not giftable.",
+        }
+    }
+
+    constructor(name) {
+        let selected = Background.options[name];
+        super(selected.name, selected.description, selected.price);
+    }
+
+    toString() {
+        return super.toString()
+    }
 }
 
 
@@ -370,4 +581,10 @@ temp = new Bottle("mootix")
 console.log(temp.toString())
 
 temp = new Dropper("mootix_faerie")
+console.log(temp.toString())
+
+temp = new Decoration("large_mossy_twig")
+console.log(temp.toString())
+
+temp = new Background("snow_wonderland")
 console.log(temp.toString())
